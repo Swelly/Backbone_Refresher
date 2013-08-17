@@ -78,13 +78,15 @@
       var src = $('#adventure-template').html();
       this.template = Handlebars.compile(src); // Giving AdventureView this dynamic template with "this"
       this.model = adventure; // sets the adventure to the views model
+      // if we change one of the attr of the model, it will re-render it depending on the changes made
+      this.listenTo(this.model, "change", this.render);
     },
     render: function (adventure) {
       // $el is a div on default if not set
       // "adventure" and its attributes (these attr are being printed in the "adventure-template")
-      var adventure_entry = this.$el.append(this.template(this.model.attributes));
+      var adventure_entry = this.$el.html(this.template(this.model.attributes));
       // appending the adventure to the div I made
-      $('#adventure').append(adventure_entry);
+      $('#adventure').html(adventure_entry); // setting html to the new adventure
     },
 
     adventureAlert: function () {
@@ -108,12 +110,15 @@
     model: Adventure,
 
     initialize: function () {
-      this.on("add", this.update); //
+      // add event listener on the adventure collection that
+      // gets called when you 'add' to this collection
+      this.on("add", this.update);
     },
     update: function () {
+      // this defines the update function ^^ above which is
+      // applied to the collection in the initialize method
       alert("I am a collection and now have " + this.length)
     }
-
   });
 
   </script>
