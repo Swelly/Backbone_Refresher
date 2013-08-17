@@ -70,14 +70,25 @@
   var main = new MainView();
   // New View for Adventures //
   var AdventureView = Backbone.View.extend({
-    initialize: function () {
+    events: {
+      "click" : "adventureAlert"
+    },
+    // Passing in adventure => this allows for line 77
+    initialize: function (adventure) {
       var src = $('#adventure-template').html();
       this.template = Handlebars.compile(src); // Giving AdventureView this dynamic template with "this"
+      this.model = adventure; // sets the adventure to the views model
     },
     render: function (adventure) {
       // $el is a div on default if not set
-      var adventure_entry = this.$el.append(this.template(adventure.attributes));
+      // "adventure" and its attributes (these attr are being printed in the "adventure-template")
+      var adventure_entry = this.$el.append(this.template(this.model.attributes));
+      // appending the adventure to the div I made
       $('#adventure').append(adventure_entry);
+    },
+
+    adventureAlert: function () {
+      alert(this.model.get("quest"))
     }
   });
 
@@ -88,6 +99,23 @@
       reward: "3 bags of Gold"
     }
   });
+
+  var adventure1 = new Adventure(); // create a new instance of an Adventure (model)
+  var adView = new AdventureView(adventure1); // creating a new instance of an adventure view AND passing in the book object we just created. Notice in the initialize function we are passing through the adventure
+  adView.render(); // this renders the book the adventure that has already been set by default in our Model.
+
+  var Adventures = Backbone.Collection.extend({
+    model: Adventure,
+
+    initialize: function () {
+      this.on("add", this.update); //
+    },
+    update: function () {
+      alert("I am a collection and now have " + this.length)
+    }
+
+  });
+
   </script>
 
 </body>
