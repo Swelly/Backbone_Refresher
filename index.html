@@ -80,6 +80,7 @@
       this.model = adventure; // sets the adventure to the views model
       // if we change one of the attr of the model, it will re-render it depending on the changes made
       this.listenTo(this.model, "change", this.render);
+      //deals with changing the data but having the models respond and then render
     },
     render: function (adventure) {
       // $el is a div on default if not set
