@@ -8,18 +8,15 @@ body {
   padding: 0;
 }
 
-#main {
+#fruit {
   border-radius: 10px;
   background-color: rgba(255,255,255,0.9);
   padding: 20px;
-  width: 300px;
+  width: 250px;
 }
 
 h1 {
-  border-bottom: 1px dotted black;
-  width: 230px;
-}
-
-h1, h2, h3, h4 {
+  width: 250px;
   color: #999;
+  margin-bottom: -5px;
 }
