@@ -9,10 +9,18 @@ body {
 }
 
 #fruit {
+  float: left;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.9);
   padding: 20px;
-  width: 500px;
+  width: 350px;
+}
+#adventure {
+  float: right;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px;
+  width: 350px;
 }
 
 h1 {
