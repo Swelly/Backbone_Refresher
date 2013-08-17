@@ -7,11 +7,20 @@
 <body>
   <div class = "wrapper">
     <p id="fruit">I like strawberries</p>
-    <script type ="x-handlebars-template"></script>
+    <script id = "mr-template" type = "x-handlebars-template">
+      <h1>
+        Mr Template here
+      </h1>
+    </script>
+    <script id = "ms-template" type = "x-handlebars-template">
+      <h1>
+        Ms Template here, {{name}}
+      </h1>
+    </script>
   </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="https:////cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"type="text/javascript"></script>
+<script src="https:////cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js" type="text/javascript"></script>
 <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
 <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 <script type="text/javascript" src="main.js"></script>
@@ -28,19 +37,36 @@
     },
 
     initialize: function () {
+      var src = $('#mr-template').html();
+      var template = Handlebars.compile(src); // local variable
+      this.$el.append(template());
+      var src2 = $('#ms-template').html();
+      this.template = Handlebars.compile(src2); // setting this.template as 'template' for the render function
       // this.$el.append("stuff!");
-      this.$el.append("<h1> UF WHOAAAA </h1>"); // the $ gives us the cached jQuery element (i.e. the element that exists already)
+      // the $ gives us the cached jQuery element (i.e. the element that exists already)
+    },
+    // this render function will append a name to the ms template on-the-fly
+    render: function (name) {
+      this.$el.append(this.template({name: name}));
     },
     alarm: function () {
       alert("Time to refresh!!");
     },
     hoverCraft: function() {
       console.log("Please turn red!");
-      this.$el.children().css("color", "#F78181");
+      this.$el.children().css("color", "#F78181"); // children will focus on the H1 tag in this instance
     }
 
 });
   var main = new MainView();
+
+  var Adventure = new Backbone.Model.extend({
+    default: {
+      quest: "Slay the dragon",
+      duration: 0
+      reward: "3 bags of Gold"
+    }
+  })
   </script>
 
 </body>
