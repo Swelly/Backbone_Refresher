@@ -1,0 +1,25 @@
+body {
+  font-family: 'Arvo', serif;
+  color: #5FB404;
+  background-color: #D8D8D8;
+}
+.wrapper {
+  margin: 100px auto 0 100px;
+  padding: 0;
+}
+
+#main {
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px;
+  width: 300px;
+}
+
+h1 {
+  border-bottom: 1px dotted black;
+  width: 230px;
+}
+
+h1, h2, h3, h4 {
+  color: #999;
+}
